@@ -10,3 +10,5 @@ def add_numbers(a, b):
     print(f"{a} + {b} = {a + b}")
 
 add_numbers(5, 7)
+for i in range(3):
+    print(f"Feature-1 loop iteration {i+1}")
