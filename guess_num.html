@@ -8,12 +8,20 @@
         <p>Guess a number between 1 and 10:</p>
         <input type="number" id="guess"/>
         <button onclick="checkGuess()">Guess!</button>
+        <button onclick="restartGame()">Restart Game</button>
 
         <p id="message"></p>
 
         <script>
-            const secretNumber = Math.floor(Math.random() * 10) + 1;
-            let attempts = 3;
+            let secretNumber;
+            let attempts;
+
+            function startGame() {
+                secretNumber = Math.floor(Math.random() * 10) + 1;
+                attempts = 3;
+                document.getElementById("message").textContent = "Game started! You have 3 attempts.";
+                document.getElementById("guess").value = "";
+            }
 
             function checkGuess() {
                 const userGuess = Number(document.getElementById("guess").value);
@@ -39,6 +47,12 @@
                     message.textContent = "Game Over! The number was ${secretNumber}";
                 }
             }
+
+            function restartGame() {
+                startGame();
+            }
+
+            startGame(); // start game automatically when page loads
         </script>
     </body>
 </html>
