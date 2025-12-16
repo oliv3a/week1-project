@@ -2,19 +2,95 @@
 <html>
     <head>
         <title>The Guess-the-Number game</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f4f6f8;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+
+            }
+            .game{
+                background: plum;
+                padding: 25px;
+                border-radius: 12px;
+                width: 320px;
+                text-align: center;
+                box-shadow: 0 10px 25px rgb(0,0,0,0.1);
+            }
+
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            input{
+                padding: 8px;
+                width: 60px;
+                text-align: center;
+                font-size: 16px;
+            }
+            button {
+                padding: 8px 12px;
+                margin: 8px 4px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+            button:hover {
+                opacity: 0.9;
+            }
+
+            .guess-btn {
+                background: #4f46e5;
+                color: white;
+            }
+
+            .restart-btn {
+                background: #10b981;
+                color: white;
+            }
+
+            #message {
+                margin-top: 15px;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
-        <h1>Guess the Number Game</h1>
-        <p>Guess a number between 1 and 10:</p>
-        <input type="number" id="guess"/>
-        <button onclick="checkGuess()">Guess!</button>
-        <button onclick="restartGame()">Restart Game</button>
+        <div class="game">
+            <h1>Guess the Number 🎯</h1>
 
-        <p id="message"></p>
+            <p>Guess a number between 1 and 10</p>
+
+            <input type="number" id="guess" />
+            <br />
+
+            <button class="guess-btn" id="guessBtn">Guess</button>
+            <button class="restart-btn" id="restartBtn">Restart 🔄</button>
+
+            <p id="message"></p>
+        </div>
+
 
         <script>
+            document.addEventListener("click", () => {
+    console.log("You clicked somewhere!");
+  });
             let secretNumber;
             let attempts;
+
+            const guessInput = document.getElementById("guess");
+            const message = document.getElementById("message");
+            const guessBtn = document.getElementById("guessBtn");
+            const restartBtn = document.getElementById("restartBtn");
+
+            guessBtn.addEventListener("click",checkGuess);
+            restartBtn.addEventListener("click",restartGame);
+            
 
             function startGame() {
                 secretNumber = Math.floor(Math.random() * 10) + 1;
@@ -44,7 +120,7 @@
                 }
 
                 if (attempts == 0 && userGuess !== secretNumber) {
-                    message.textContent = "Game Over! The number was ${secretNumber}";
+                    message.textContent = `Game Over! The number was ${secretNumber}`;
                 }
             }
 
