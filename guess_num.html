@@ -13,18 +13,30 @@
 
         <script>
             const secretNumber = Math.floor(Math.random() * 10) + 1;
+            let attempts = 3;
 
             function checkGuess() {
                 const userGuess = Number(document.getElementById("guess").value);
                 const message = document.getElementById("message");
+                if (attempts <= 0) {
+                    message.textContent = "GAME OVER! REFRESH to try again.";
+                    return;
+                }
+
+                attempts--; // reduce attempts by 1
 
                 if (userGuess === secretNumber) {
                     message.textContent = "Correct ! You guess it !";
+                    attempts = 0
                 }
                 else if (userGuess < secretNumber) {
-                    message.textContent = "Too low! Try again!";
+                    message.textContent = `Too low! ${attempts} attempts left`;
                 } else {
-                    message.textContent = "Too high! Try again!";
+                    message.textContent = `Too high! ${attempts} attempts left`;
+                }
+
+                if (attempts == 0 && userGuess !== secretNumber) {
+                    message.textContent = "Game Over! The number was ${secretNumber}";
                 }
             }
         </script>
