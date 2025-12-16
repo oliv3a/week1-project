@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Guess-the-Number game</title>
+    </head>
+    <body>
+        <h1>Guess the Number Game</h1>
+        <p>Guess a number between 1 and 10:</p>
+        <input type="number" id="guess"/>
+        <button onclick="checkGuess()">Guess!</button>
+
+        <p id="message"></p>
+
+        <script>
+            const secretNumber = Math.floor(Math.random() * 10) + 1;
+
+            function checkGuess() {
+                const userGuess = Number(document.getElementById("guess").value);
+                const message = document.getElementById("message");
+
+                if (userGuess === secretNumber) {
+                    message.textContent = "Correct ! You guess it !";
+                }
+                else if (userGuess < secretNumber) {
+                    message.textContent = "Too low! Try again!";
+                } else {
+                    message.textContent = "Too high! Try again!";
+                }
+            }
+        </script>
+    </body>
+</html>
